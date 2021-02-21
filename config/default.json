@@ -1,0 +1,18 @@
+{
+    "db-connections":{
+        "mongodb":{
+            "host":"cluster0.dvmu8.mongodb.net",
+            "user":"rest_api_user",
+            "password": "awIrwoKM9URSbDLo",
+            "dbname":"AcademicDB"
+        }
+    },
+    "secretKeys":{
+        "crytojs":"5Jk7rPFhYt"
+    },
+    "roles":{
+        "student": 1,
+        "teacher": 2
+    },
+    "server-port": 5500 
+}
