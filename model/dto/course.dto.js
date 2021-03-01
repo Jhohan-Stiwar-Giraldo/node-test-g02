@@ -27,5 +27,5 @@ schema.statics = {
     }
 };
 
-const dto = mongoose.model("course", schema);
+const dto = mongoose.model("coll_course", schema);
 module.exports = dto;
