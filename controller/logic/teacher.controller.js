@@ -30,10 +30,10 @@ exports.createTeacher = (req, res, next) => {
         let user = {
             name : teacher.name,
             lastname : teacher.lastname,
-            userName : teacher.code,
+            username : teacher.code,
             password : helper.EncryptPassword(req.body.password),
             role: r 
-        }
+        };
         userDto.create(user, (err,u)=>{ // u=user
             if(err){
                 teacherDto.delete({_id: data._id}, (e, data) =>{
@@ -73,11 +73,36 @@ exports.updateTeacher = (req, res, next) => {
                 }
             );
         }
-        res.status(201).json(
-            {
-            info:data
+        
+        if(req.body.olddocument != undefined ){
+            let r = config.get("roles").teacher;
+            let user = {
+                name : teacher.name,
+                lastname : teacher.lastname,
+                username : teacher.code,
+                password : helper.EncryptPassword(req.body.password),
+                role: r 
+            };
+            userDto.update({username:req.body.olddocument },user, (err,u)=>{ // u=user
+                if(err){                      
+                    return  res.status(400).json(
+                        { 
+                            error : err 
+                        }
+                    );
+                }
+                notHelper.sentSMS(teacher.phone);
+                res.status(201).json({
+                    info:data
+                });
+            });
+        }else {
+            res.status(201).json(
+                {
+                info:data
+            }
+            );
         }
-        );
     });
 };
 

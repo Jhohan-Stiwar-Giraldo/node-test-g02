@@ -21,7 +21,7 @@ schema.statics = {
     getByCode: function (query, cb){
         this.find(query, cb); 
     },
-    update : function (query,data,cd){
+    update: function (query,data,cb){
         this.findOneAndUpdate(query, {$set:data}, {new: true}, cb);
     },
     delete: function(query,cb){

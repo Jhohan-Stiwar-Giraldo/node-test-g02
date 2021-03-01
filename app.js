@@ -19,7 +19,7 @@ const bodyParser = require("body-parser");
 
 /**methods */
 app.get("/", (req, res, next) =>{
-    res.send("Welcome to academic rest api")
+    res.send("Welcome to rest api");
 });
 
 //students routes
@@ -28,7 +28,15 @@ StudentRoutes(app);
 
 //teacher routes loading
 const TeacherRoutes = require("./routes/teacher.routes");
-StudentRoutes(app); 
+TeacherRoutes(app); 
+
+// preiod loading
+const PeriodRoutes = require("./routes/period.routes");
+PeriodRoutes(app); 
+
+//course routes loading
+const CourseRoutes = require("./routes/course.routes");
+CourseRoutes(app); 
 
  app.listen(port, ()=>{
     console.log("server is running...")
