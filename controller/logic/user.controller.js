@@ -15,10 +15,14 @@ exports.login = (req, res, next) => {
         if (data.length >0){
             let pass = helper.DecryptPassword(data[0].password);
             if(req.body.password===pass){
-                console.log("generar token")
+                tk= helper.GenerateToken(data[0]);
+                return res.status(200).json({
+                    token : tk
+                }
+            );
 
             }else {
-                    res.status(400).json({
+                    return res.status(400).json({
                         info:"Username or password are incorrect"
                     }
                 );
@@ -29,7 +33,7 @@ exports.login = (req, res, next) => {
     
 };
 
-exports.getAll = (req, res, next) => {
+exports.get = (req, res, next) => {
     userDto.getAll ({ }, (err, data)=>{
         if (err){
             return res.status(400).json(

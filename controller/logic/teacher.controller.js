@@ -34,9 +34,9 @@ exports.createTeacher = (req, res, next) => {
             password : helper.EncryptPassword(req.body.password),
             role: r 
         };
-        userDto.create(user, (err,u)=>{ // u=user
+        userDto.create(user, (err ,u)=>{ // u=user
             if(err){
-                teacherDto.delete({_id: data._id}, (e, data) =>{
+                teacherDto.delete({_id: data.id}, (e, data) =>{
                     
                     return  res.status(400).json(
                         { 
