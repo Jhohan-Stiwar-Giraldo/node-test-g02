@@ -22,8 +22,9 @@ exports.GenerateToken = (user) =>{
     let token = jwt.sign({
         exp: Math.floor(Date.now() / 1000) + (60 * 60),
         data: {
-            username= user.username,
-            id =   user._id
+            username: user.username,
+            id :  user._id,
+            role : user.role
         }
       }, secretkey);
       return token;
